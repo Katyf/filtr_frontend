@@ -11,8 +11,6 @@ $(document).ajaxStart(function(e){
   $('section#ajax-preloader').fadeIn();
   $('section#container').fadeOut();
 });
-var router = new Router();
-Backbone.history.start();
 
 $(document).ajaxComplete(function(event, xhr, settings) {
   /* executes whenever an AJAX request completes */
@@ -30,14 +28,14 @@ var Router = Backbone.Router.extend({
     'posts/:id': 'showPosts' // http://localhost:9000/#/posts/1
   },
   home: function(){
-    trace('hello world');
+    trace('hello from home');
     $('#container').empty();
     $.ajax({
-      url: 'http://localhost:3000/'
+      url: 'http://localhost:3000/posts'
     }).done(function(response){
       var template = Handlebars.compile($('#homeTemplate').html());
       $('#container').html(template({
-        submissions: response
+        post: response
       }));
     }).fail(function(jqXHR, textStatus, errorThrown){
       trace(jqXHR, textStatus, errorThrown);
@@ -80,3 +78,6 @@ var Router = Backbone.Router.extend({
     });
   }
 });
+
+var router = new Router();
+Backbone.history.start();
