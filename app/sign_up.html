@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Movies App</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/css/style.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+
+    <!-- endbuild -->
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <nav>
+        <ul>
+            <li class="nav-left"><a href="http://localhost:9000" title="">MoviesApp</a></li>
+            <li class="nav-right"><a href="http://localhost:9000" title="">Home</a></li>
+            <li class="newmovie-btn nav-right"><a href="#" title="">Add New Movie</a></li>
+             <li class=""><a href="/sign_in.html" title="">Sign In</a></li>
+            <li class=""><a href="/sign_up.html" title="">Sign Up</a></li>
+            <li class=""><a href="" id="sign-out">Sign Out</a></li>
+        </ul>
+    </nav>
+    <section class="all-but-nav">
+
+      <div class="jumbotron">
+        <h3>Sign In</h3>
+        <form id='loginForm'>
+          <fieldset>
+            <label for='email'>Email</label>
+              <input type='text' id='email' name='email' autofocus='true' />
+            <br>
+            <label for='password'>Password</label>
+              <input type='password' id='password' name='password' />
+          </fieldset>
+
+          <button type='submit'>Sign In</button>
+        </form>
+      </div>
+
+    <!-- build:js(.) scripts/oldieshim.js -->
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <![endif]-->
+    <!-- endbuild -->
+
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/handlebars/handlebars.js"></script>
+    <script src="js/sign_in.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+
+  </section>
+  </body>
+</html>
