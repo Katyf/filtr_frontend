@@ -56,6 +56,9 @@
         {{#each post}}
                 <ul>
                     <li>Post body: {{message}}</li>
+                    {{#each comments}}
+                    <li>Comment body: {{body}} </li>
+                    {{/each}}
                 </ul>
             </div>
 
