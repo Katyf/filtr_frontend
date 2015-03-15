@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Javascript Repo Template</title>
+    <title>Filtr</title>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
@@ -18,7 +18,7 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <h1>My new repo template for javascript</h1>
+    <h1>Filtr</h1>
     <nav>
       <ul>
         <li><a href="#">Filtr</a></li>
@@ -54,15 +54,37 @@
     <script src="js/app.js" type="text/javascript"></script>
         <script type="text/x-handlebars-template" id="homeTemplate">
         {{#each post}}
+            <div id="post-info">
                 <ul>
                     <li>Post body: {{message}}</li>
                     {{#each comments}}
                     <li>Comment body: {{body}} </li>
                     {{/each}}
+                    {{#each images}}
+                        <li><img src="{{url}}" style="width:200px;height:200px"></li>
+                    {{/each}}
                 </ul>
             </div>
 
         {{/each}}
+    </script>
+
+        <script type="text/x-handlebars-template" id="showPostsTemplate">
+
+            <div id="show-info">
+                <ul>
+                    <li>Post body: {{onePost.message}}</li>
+                    {{#each onePost.comments}}
+                    <li>Comment body: {{body}} </li>
+                    {{/each}}
+                    {{#each onePost.images}}
+                        <li><img src="{{url}}" style="width:200px;height:200px"></li>
+                    {{/each}}
+                </ul>
+                <button name="button" id="button">Click me</button>
+            </div>
+
+
     </script>
     <!-- endbuild -->
   </body>
