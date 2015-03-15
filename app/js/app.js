@@ -30,7 +30,7 @@ var Router = Backbone.Router.extend({
     trace('hello from home');
     $('#container').empty();
     $.ajax({
-      url: 'http://localhost:3000/posts'
+      url: 'http://localhost:3000/posts/'
     }).done(function(response){
 
       var template = Handlebars.compile($('#homeTemplate').html());
@@ -48,21 +48,44 @@ var Router = Backbone.Router.extend({
   showPosts: function(id){
     trace("hello word from showPosts");
     $('#container').empty();
+    var id = localStorage.getItem('id') || id ;
     $.ajax({
       url: 'http://localhost:3000/posts/' + id,
       type: 'GET'
     }).done(function(response){
-      var template = Handlebars.compile($('#submissionTemplate').html());
+      localStorage.setItem('id', id);
+      var template = Handlebars.compile($('#showPostsTemplate').html());
       $('#container').html(template({
-        submission: response
+        onePost: response
       }));
+
+    $("#button").click(function(event){
+    event.preventDefault();
+    localStorage.getItem('id');
+    id = parseInt(id);
+    id = id + 1;
+    localStorage.setItem('id', id);
+    console.log(id);
+    Backbone.history.loadUrl(Backbone.history.fragment);
+
+    });
+
+
    }).fail(function(jqXHR, textStatus, errorThrown){
       trace(jqXHR, textStatus, errorThrown);
     }).always(function(response){
       trace(response);
     });
   }
+
+
 });
 
 var router = new Router();
 Backbone.history.start();
+
+
+
+
+
+
