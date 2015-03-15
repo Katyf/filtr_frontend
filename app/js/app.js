@@ -46,10 +46,9 @@ var Router = Backbone.Router.extend({
   },
 
   showPosts: function(id){
-    debugger;
     trace("hello word from showPosts");
     $('#container').empty();
-    var id = id || localStorage.getItem('id');
+    var id = localStorage.getItem('id') || id ;
     $.ajax({
       url: 'http://localhost:3000/posts/' + id,
       type: 'GET'
@@ -67,7 +66,7 @@ var Router = Backbone.Router.extend({
     id = id + 1;
     localStorage.setItem('id', id);
     console.log(id);
-    Backbone.history.loadUrl('http://localhost:9000/#/posts/' + id);
+    Backbone.history.loadUrl(Backbone.history.fragment);
 
     });
 
