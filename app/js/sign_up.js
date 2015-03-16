@@ -1,6 +1,5 @@
 /*global $:false*/
 'use strict';
-
 var filtrApp = (function(){
   var authToken, apiHost;
 
@@ -8,18 +7,20 @@ var filtrApp = (function(){
     authToken = localStorage.getItem('authToken');
     apiHost = 'https://filter-api.herokuapp.com/';
     setupAjaxRequests();
-    $('#').on('submit', submitLogin);
-    $('#').on('submit', submitRegistration);
-    $('#').on('click', signOut);
+    $('.ui form').on('submit', submitLogin);
+    $('.ui form').on('submit', submitRegistration);
+    $('').on('click', signOut);
   };
 
   var submitRegistration = function(event){
+    console.log("button works");
     event.preventDefault();
     $.ajax({
       url: apiHost + '/users',
       type: 'POST',
       data: {user: {
         email: $('#email').val(),
+        username: $('#username').val(),
         password: $('#password').val()
       }},
     }).done(loginSuccess).fail(function(){
@@ -59,7 +60,7 @@ var filtrApp = (function(){
   var acceptFailure = function(error){
     if(error.status === 401){
       console.log('send to login screen');
-      window.location.href = '/sign_in.html';
+      window.location.href = '/signin.html';
     }
   };
 
