@@ -4,12 +4,15 @@ var S3App = S3App || {};
 
 S3App.getKey = function(){
   $.ajax({
-    url: 'http://localhost:3000/amazon/sign_key',
+    url: 'https://filter-api.herokuapp.com/amazon/sign_key',
     type: 'GET',
     dataType: 'JSON',
   })
   .done(function(data) {
     S3App.getUrl(data);
+    var template = Handlebars.compile($('#imageFormTemplate').html());
+      $('#s3-container').html(template({ imageForm: data }));
+    console.log(data);
   })
   .fail(function() {
     console.log("error");
@@ -35,17 +38,7 @@ S3App.parseData = function(data) {
   S3App.signature = data.signature;
 };
 
-// S3App.buildForm = function(){
-//   var form = $('s3-form');
-//   form.append('key',signKeyResults.key);
-//   form.append('AWSAccessKeyId',signKeyResults.access_key);
-//   form.append('policy',signKeyResults.policy);
-//   form.append('acl','public-read');
-//   form.append('signature',signKeyResults.signature);
-//   form.append('Content-Type','image/jpeg');
-//   form.append('file',imageFile);
 
-// };
 
 $(document).ready(function() {
   S3App.getKey();
