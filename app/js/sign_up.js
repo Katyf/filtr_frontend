@@ -9,11 +9,10 @@ var filtrApp = (function(){
     setupAjaxRequests();
     $('.ui form').on('submit', submitLogin);
     $('.ui form').on('submit', submitRegistration);
-    $('').on('click', signOut);
+    $('#sign-out').on('click', signOut);
   };
 
   var submitRegistration = function(event){
-    console.log("button works");
     event.preventDefault();
     $.ajax({
       url: apiHost + '/users',

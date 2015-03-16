@@ -78,7 +78,12 @@ var Router = Backbone.Router.extend({
     });
   }
 
-
+});
+$(document).ready(function(){
+  var authToken =  localStorage.getItem('authToken');
+  if (!authToken){
+    window.location.href="/signup.html";
+  }
 });
 
 var router = new Router();
