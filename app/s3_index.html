@@ -2,10 +2,25 @@
   <head>
     <title>S3 POST Form</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.css">
+    <link rel="stylesheet" href="styles/main.css">
   </head>
 
   <body>
 
+    <form class="ui form" id="new-post-form">
+    <div class="required field">
+      <label>Message</label>
+      <div class="ui icon input">
+        <input id="post-msg" type="text" placeholder="e.g., Which photo is better?">
+    </div>
+  </div>
+  <div class="ui error message">
+    <div class="header">We noticed some issues</div>
+  </div>
+  <button class="ui submit button" type="submit">Submit</button>
+</form>
+</div>
     <section id='s3-container'>
 
     </section>
@@ -13,7 +28,7 @@
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="/js/s3key.js" type="text/javascript" charset="utf-8" async defer></script>
     <script src="bower_components/handlebars/handlebars.js"></script>
-    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.17.min.js"></script>
+    <script src="bower_components/semantic-ui/dist/semantic.js"></script>
 
     <script type="text/x-handlebars-template" id="imageFormTemplate">
     <div class="imageForm">
