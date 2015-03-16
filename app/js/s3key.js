@@ -2,17 +2,20 @@
 
 var S3App = S3App || {};
 
-S3App.getKey = function(){
+S3App.getKey = function(id){
   $.ajax({
-    url: 'https://filter-api.herokuapp.com/amazon/sign_key',
+    url: 'http://localhost:3000/amazon/sign_key',
     type: 'GET',
     dataType: 'JSON',
   })
   .done(function(data) {
-    S3App.getUrl(data);
     var template = Handlebars.compile($('#imageFormTemplate').html());
       $('#s3-container').html(template({ imageForm: data }));
     console.log(data);
+    //debugger;
+    $('.imageForm').on('submit', function(){
+      S3App.sendUrlToDb(id, data.key);
+    });
   })
   .fail(function() {
     console.log("error");
@@ -20,28 +23,61 @@ S3App.getKey = function(){
 
 };
 
-S3App.getUrl = function(data){
-  S3App.parseData(data);
-  AWS.config.update({accessKeyId: S3App.access_key, secretAccessKey: S3App.signature, region: 'us-east-1'});
-  var s3 = new AWS.S3();
-  var params = {Bucket: S3App.bucket, Key: S3App.key};
-  s3.getSignedUrl('getObject', params, function(err, url){
-    console.log(url);
+S3App.submitPost = function() {
+  event.preventDefault();
+  //debugger;
+  $.ajax({
+    url: 'http://localhost:3000/posts',
+    type: 'POST',
+    data: { post: { message: $('#post-msg').val() }},
+  })
+  .done(function(results) {
+    console.log(results.id);
+    //debugger;
+    S3App.getKey(results.id);
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
   });
-};
 
+}
 
-S3App.parseData = function(data) {
-  S3App.access_key = data.access_key;
-  S3App.key = data.key;
-  S3App.bucket = data.bucket;
-  S3App.signature = data.signature;
-};
+S3App.sendUrlToDb = function(id, key){
+  // var postId = parseInt(event.target.id.replace(/\D/g, ''));
+  //debugger;
+  $.ajax({
+    url: 'http://localhost:3000/posts/' + id + '/images' ,
+    type: 'POST',
+    data: { image: { url: 'https://s3.amazonaws.com/filtrapp/' + key }},
+  })
+  .done(function(data) {
+    console.log(data);
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
 
+}
 
 
 $(document).ready(function() {
-  S3App.getKey();
+  //S3App.getKey();
+
+  // $('#new-post-form').on('submit', function(e) {
+  //   S3App.submitPost(e);
+  // });
+
+  $('#new-post-form').on('submit', function(){
+    console.log('submitted');
+    S3App.submitPost();
+  });
+
 });
 
 
