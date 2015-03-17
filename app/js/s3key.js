@@ -1,7 +1,6 @@
 'use strict';
 
 var S3App = S3App || {
-  //var postId 
 };
 
 S3App.submitPost = function() {
@@ -14,11 +13,10 @@ S3App.submitPost = function() {
   })
   .done(function(results) {
     console.log(results.id);
-    //debugger;
-    //S3App.setPostId(results.id)
     S3App.getKey(results.id);
-    $('#new-post-form').fadeOut();
-
+    $('#new-post-form').hide();
+    S3App.getMessage(results.id);
+    $('#message-prompt').hide();
   })
   .fail(function() {
     console.log("error");
@@ -27,6 +25,23 @@ S3App.submitPost = function() {
     console.log("complete");
   });
 
+}
+
+S3App.getMessage = function(postId){
+  $.ajax({
+    url: 'http://localhost:3000/posts/' + postId,
+    type: 'GET',
+  })
+  .done(function(data) {
+    S3App.renderMessage(data.message);
+  })
+  .fail(function() {
+    console.log("error");
+  });
+}
+
+S3App.renderMessage = function(msg) {
+  $('.post-message-div').append('<h4>Your Message: </h4><p> ' + msg + '</p>');
 }
 
 S3App.getKey = function(id){
@@ -53,11 +68,6 @@ S3App.getKey = function(id){
 };
 
 
-
-//S3App.setPostId = function(id){
-  //return id;
-//}
-
 S3App.sendUrlToDb = function(id, key){
   // var postId = parseInt(event.target.id.replace(/\D/g, ''));
   //debugger;
@@ -68,11 +78,11 @@ S3App.sendUrlToDb = function(id, key){
   })
   .done(function(data) {
     console.log(data);
-    $('#img-upload-prompt').fadeOut();
-    //$('.imgFile').val('');
-    //$('#img-upload-prompt-2').show();
     $('#s3-container').empty();
     S3App.getSecondKey(id);
+    $('.second.modal #next').on('click', function(){
+      S3App.showThumbs(data.url);
+    });
   })
   .fail(function() {
     console.log("error");
@@ -90,6 +100,11 @@ S3App.getSecondKey = function(id){
     dataType: 'JSON',
   })
   .done(function(data) {
+    $('#first-check').fadeIn('slow');
+    $('#first-check').transition({
+      animation: 'pulse',
+      duration: '2s',
+      });
     $('#s3-container').fadeIn();
     $('#img-upload-prompt-2').fadeIn();
     var sectemplate = Handlebars.compile($('#imageFormTemplate2').html());
@@ -114,13 +129,19 @@ S3App.sendSecondUrlToDb = function(id, key){
   })
   .done(function(data) {
     console.log(data);
-    $('#img-upload-prompt-2').fadeOut();
     $('#s3-container').fadeOut();
+    $('#second-check').fadeIn('slow');
+    $('#second-check').transition({
+      animation: 'pulse',
+      duration: '2s',
+      });
     $('#done').fadeIn();
     //debugger;
-    S3App.showThumbs(data.url)
-    S3App.getSecondKey(id);
-  })
+    $('.second.modal #next').on('click', function(){
+      S3App.showThumbs(data.url);
+    });
+    })
+    //S3App.getSecondKey(id);
   .fail(function() {
     console.log("error");
   })
@@ -131,18 +152,18 @@ S3App.sendSecondUrlToDb = function(id, key){
 }
 
 S3App.showThumbs = function (url) {
-  $('div#img-preview-container').append('<img class="show-img" src="' + url + '"/>');
+  $('div#img-preview-container').append('<img class="show-img" src="' + url + '" style="width:100px;height:100px"/>');
 }
 
 
 
 
 $(document).ready(function() {
-  
+
   $('#img-upload-prompt').hide();
   $('#img-upload-prompt-2').hide();
   $('#done').hide();
-  //$('i').hide();
+  $('.checkmark').hide();
 
   $('#new-post-form').on('submit', function(){
     console.log('submitted');
@@ -150,7 +171,7 @@ $(document).ready(function() {
   });
 
   $('#done').on('click', function() {
-    window.location.href = 'http://localhost:9000/' 
+    window.location.href = 'http://localhost:9000/'
   });
 
 });
