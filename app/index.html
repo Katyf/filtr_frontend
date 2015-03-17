@@ -24,7 +24,7 @@
       <ul>
         <li><a href="#">Filtr</a></li>
         <li><a href="#">Home</a></li>
-        <li><a href="#/posts">Pots</a></li>
+        <li><a href="#/posts">Posts</a></li>
         <li><a href="#/new-submission">Submit</a></li>
         <li><a href="/signin.html" id="sign-out">Sign Out</a></li>
     </ul>
@@ -82,7 +82,7 @@
                     <li>Comment body: {{body}} </li>
                     {{/each}}
                     {{#each onePost.images}}
-                        <li><img src="{{url}}" style="width:200px;height:200px"></li>
+                        <li><img src="{{url}}" style="width:200px;height:200px" class="voteable" alt="{{id}}"></li>
                     {{/each}}
                 </ul>
                 <button name="button" id="button">Click me</button>
