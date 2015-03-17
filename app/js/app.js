@@ -66,7 +66,7 @@ var Router = Backbone.Router.extend({
 
 
             $.ajax({
-              // /posts/:post_id/images/:id/upvote(.:format
+              // POST /posts/:post_id/images/:id/vote(.:format
               url: 'http://localhost:3000/posts/' + id + '/images/' + imgId + '/upvote',
               type: 'GET'
             }).done(function(data){
@@ -86,7 +86,7 @@ var Router = Backbone.Router.extend({
 debugger;
             $.ajax({
               // /posts/:post_id/images/:id/upvote(.:format
-              url: 'http://localhost:3000/posts/' + id + '/images/' + imgId + '/upvote',
+              url: 'http://localhost:3000/posts/' + id + '/images/' + imgId + '/votes',
               type: 'PATCH',
               data: {
                 vote: {count : votecount }
@@ -126,13 +126,7 @@ debugger;
     });
   }
 
-});
 
-$(document).ready(function(){
-  var authToken =  localStorage.getItem('authToken');
-  if (!authToken){
-    window.location.href="/signup.html";
-  }
 });
 
 var router = new Router();
