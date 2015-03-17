@@ -59,16 +59,64 @@ var Router = Backbone.Router.extend({
         onePost: response
       }));
 
-    $("#button").click(function(event){
-    event.preventDefault();
-    localStorage.getItem('id');
-    id = parseInt(id);
-    id = id + 1;
-    localStorage.setItem('id', id);
-    console.log(id);
-    Backbone.history.loadUrl(Backbone.history.fragment);
+      $(document).ready(function(){
+        $("body").on('click', 'img.voteable', function(event){
+            // event.currentTarget == image that was clicked
+            var imgId = this.alt
 
-    });
+
+            $.ajax({
+              // /posts/:post_id/images/:id/upvote(.:format
+              url: 'http://localhost:3000/posts/' + id + '/images/' + imgId + '/upvote',
+              type: 'GET'
+            }).done(function(data){
+              checkVote(data);
+            }).fail(function(data){
+              console.log("failed");
+            });
+
+            var checkVote = function(votecount){
+              debugger;
+              if (votecount == false){
+                votecount = 1;
+              }else {
+                votecount +=1;
+              }
+              return votecount
+debugger;
+            $.ajax({
+              // /posts/:post_id/images/:id/upvote(.:format
+              url: 'http://localhost:3000/posts/' + id + '/images/' + imgId + '/upvote',
+              type: 'PATCH',
+              data: {
+                vote: {count : votecount }
+              }
+            }).done(function(data){
+              debugger;
+              console.log("nested post works");
+            }).fail(function(data){
+              debugger;
+              console.log("failed");
+            })
+
+            };
+
+
+        });
+
+      });
+
+
+    // $("#button").click(function(event){
+    // event.preventDefault();
+    // localStorage.getItem('id');
+    // id = parseInt(id);
+    // id = id + 1;
+    // localStorage.setItem('id', id);
+    // console.log(id);
+    // Backbone.history.loadUrl(Backbone.history.fragment);
+
+    // });
 
 
    }).fail(function(jqXHR, textStatus, errorThrown){
