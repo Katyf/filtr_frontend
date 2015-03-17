@@ -67,8 +67,8 @@ var Router = Backbone.Router.extend({
 
             $.ajax({
               // POST /posts/:post_id/images/:id/vote(.:format
-              url: 'http://localhost:3000/posts/' + id + '/images/' + imgId + '/vote',
-              type: 'POST'
+              url: 'http://localhost:3000/posts/' + id + '/images/' + imgId + '/upvote',
+              type: 'GET'
             }).done(function(data){
               checkVote(data);
             }).fail(function(data){
@@ -126,13 +126,7 @@ debugger;
     });
   }
 
-});
 
-$(document).ready(function(){
-  var authToken =  localStorage.getItem('authToken');
-  if (!authToken){
-    window.location.href="/signup.html";
-  }
 });
 
 var router = new Router();
