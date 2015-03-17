@@ -17,7 +17,7 @@
   "strict": true,
   "trailing": true,
   "smarttabs": true,
-  "$: true",
+  "jquery": true,
   "Handlebars": true,
   "Backbone": true
 }

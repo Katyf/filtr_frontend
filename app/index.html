@@ -26,6 +26,7 @@
         <li><a href="#">Home</a></li>
         <li><a href="#/posts">Posts</a></li>
         <li><a href="#/new-submission">Submit</a></li>
+        <li><a href="/signin.html" id="sign-out">Sign Out</a></li>
     </ul>
     </nav>
 
@@ -48,11 +49,13 @@
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/backbone/backbone.js"></script>
     <script src="bower_components/handlebars/handlebars.js"></script>
+    <script src="bower_components/semantic-ui/dist/semantic.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="js/app.js" type="text/javascript"></script>
+    <script src="js/sign_up.js" type="text/javascript"></script>
         <script type="text/x-handlebars-template" id="homeTemplate">
         {{#each post}}
             <div id="post-info">
