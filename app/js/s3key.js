@@ -43,7 +43,7 @@ S3App.submitPost = function() {
     console.log("complete");
   });
 
-}
+};
 
 S3App.sendUrlToDb = function(id, key){
   // var postId = parseInt(event.target.id.replace(/\D/g, ''));
@@ -63,11 +63,11 @@ S3App.sendUrlToDb = function(id, key){
     console.log("complete");
   });
 
-}
+};
 
 
 $(document).ready(function() {
-  //S3App.getKey();
+  //S3App.getKsey();
 
   // $('#new-post-form').on('submit', function(e) {
   //   S3App.submitPost(e);
