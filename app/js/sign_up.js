@@ -67,6 +67,7 @@ var filtrApp = (function(){
     event.preventDefault();
     localStorage.removeItem('authToken');
     authToken = undefined;
+    window.location.href = '/signin.html';
   };
   return {init: init};
 })();

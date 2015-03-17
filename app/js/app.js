@@ -79,6 +79,7 @@ var Router = Backbone.Router.extend({
   }
 
 });
+
 $(document).ready(function(){
   var authToken =  localStorage.getItem('authToken');
   if (!authToken){
