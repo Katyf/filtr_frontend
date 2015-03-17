@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>test modal</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.css">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+<button id="clickme">click me</button>
+<button class="btn">pulse click</button>
+<i class="right arrow icon" id="testi"></i>
+<div class="main container">
+
+  <div class="ui first coupled modal">
+    <div class="header">
+       New Post
+    </div>
+    <div class="content">
+      <div class="image">
+        <i class="circle-o icon">1</i>
+      </div>
+      <div class="description post-message-div">
+        <p id="message-prompt">Write a message:</p>
+        <form class="ui form" id="new-post-form">
+          <div class="required field">
+            <label>Message</label>
+            <div class="ui icon input">
+              <input id="post-msg" type="text" name="message" placeholder="e.g., Which photo is better?">
+            </div>
+          </div>
+          <div class="ui error message">
+            <div class="header">We noticed some issues</div>
+          </div>
+          <button class="ui submit button" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="primary ui button" id="next">Next</div>
+    </div>
+  </div>
+  <div class="ui second coupled modal">
+    <div class="header">
+      Upload Images
+    </div>
+    <div class="content">
+      <div class="image">
+        <i class="circle-o icon">2</i>
+        <div id='img-preview-container'>
+        </div>
+      </div>
+      <div class="description">
+      <div class="post-message-div"></div>
+        <h4 id='img-upload-prompt'>Upload first image: <i class="checkmark icon" id="first-check"></i></h4>
+        <h4 id='img-upload-prompt-2'>Upload a second image: <i class="checkmark icon" id="second-check"></i></h4>
+        <section id='s3-container'>
+        </section>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="primary ui button" id="next">Next</div>
+    </div>
+  </div>
+  <div class="ui third coupled modal">
+    <div class="header">
+      Preview Your Post
+    </div>
+    <div class="content">
+      <div class="image">
+      <i class="check circle outline icon"></i>
+      </div>
+      <div class="description">
+      <div class="post-message-div"></div>
+        <p></p>
+        <div id='img-preview-container'>
+      </div>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui approve button" id="done">
+        <i class="checkmark icon"></i>
+        Looks good!
+      </div>
+    </div>
+  </div>
+
+<script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="/js/untitled.js" type="text/javascript" charset="utf-8" async defer></script>
+    <script src="/js/s3key.js" type="text/javascript" charset="utf-8" async defer></script>
+    <script src="bower_components/handlebars/handlebars.js"></script>
+    <script src="bower_components/semantic-ui/dist/semantic.js"></script>
+
+    <script type="text/x-handlebars-template" id="imageFormTemplate">
+    <div class="imageForm">
+      <form action="https://s3.amazonaws.com/filtrapp" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="key" value="{{imageForm.key}}">
+        <input type="hidden" name="AWSAccessKeyId" value="{{imageForm.access_key}}">
+        <input type="hidden" name="policy" value="{{imageForm.policy}}">
+        <input type="hidden" name="signature" value="{{imageForm.signature}}">
+        <input type="hidden" name="Content-Type" value="image/jpeg">
+
+
+        File to upload:
+        <input name="file" type="file" class="imgFile">
+        <br>
+        <input type="submit" value="Upload File to S3">
+      </form>
+</script>
+ <script type="text/x-handlebars-template" id="imageFormTemplate2">
+    <div class="imageForm">
+      <form action="https://s3.amazonaws.com/filtrapp" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="key" value="{{imageForm.key}}">
+        <input type="hidden" name="AWSAccessKeyId" value="{{imageForm.access_key}}">
+        <input type="hidden" name="policy" value="{{imageForm.policy}}">
+        <input type="hidden" name="signature" value="{{imageForm.signature}}">
+        <input type="hidden" name="Content-Type" value="image/jpeg">
+
+
+        Second File to upload:
+        <input name="file" type="file" class="imgFile">
+        <br>
+        <input type="submit" value="Upload File to S3">
+      </form>
+</script>
+</body>
+</html>
