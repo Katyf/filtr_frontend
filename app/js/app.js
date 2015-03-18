@@ -6,17 +6,17 @@ var trace = function(){
   }
 };
 
-$(document).ajaxStart(function(e){
-  trace(e, 'starting an ajax request');
-  $('section#ajax-preloader').fadeIn();
-  $('section#container').fadeOut();
-});
+// $(document).ajaxStart(function(e){
+//   trace(e, 'starting an ajax request');
+//   $('section#ajax-preloader').fadeIn();
+//   $('section#container').fadeOut();
+// });
 
-$(document).ajaxComplete(function(event, xhr, settings) {
-  /* executes whenever an AJAX request completes */
-  $('section#ajax-preloader').fadeOut();
-  $('section#container').fadeIn();
-});
+// $(document).ajaxComplete(function(event, xhr, settings) {
+//   /* executes whenever an AJAX request completes */
+//   $('section#ajax-preloader').fadeOut();
+//   $('section#container').fadeIn();
+// });
 
 var App = (function(app) {
   app.initialize = function() {
@@ -79,11 +79,18 @@ var App = (function(app) {
   };
 
   var showPostSuccess = function(response){
-    // localStorage.setItem('id', response.id);
-    debugger;
+    localStorage.setItem('id', response.id);
     var template = Handlebars.compile($('#showPostsTemplate').html());
     $('#container').html(template({onePost: response}));
     $('body').on('click', 'img.voteable', {postId: response.id}, vote);
+    $('#button').on('click', function(event){
+      event.preventDefault();
+      var newId = parseInt(localStorage.getItem('id')) + 1;
+      localStorage.setItem('id', newId);
+      console.log(newId);
+
+      showPost(newId);
+    });
   };
 
   var showPost = function(postId){
