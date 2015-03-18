@@ -156,8 +156,6 @@ S3App.showThumbs = function (url) {
 }
 
 
-
-
 $(document).ready(function() {
 
   $('#img-upload-prompt').hide();
@@ -176,34 +174,4 @@ $(document).ready(function() {
 
 });
 
-
-
-
-
-
-
-
-
-
-
-// $(document).ajaxStart(function(e){
-//   trace(e, "starting an ajax request");
-//   $('section#ajax-preloader').fadeIn();
-//   $('section#s-3container').fadeOut();
-// });
-
-// var s3upload = new s3upload();
-// //Backbone.history.start();
-
-// $(document).ajaxComplete(function(event, xhr, settings) {
-//   /* executes whenever an AJAX request completes */
-//   $('section#ajax-preloader').fadeOut();
-//   $('section#s3-container').fadeIn();
-// });
-
-// var S3upload = Backbone.S3upload.extend({
-//   routes: {
-
-//   }
-// })
 
