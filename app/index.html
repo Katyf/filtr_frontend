@@ -22,11 +22,9 @@
     <h1>Filtr</h1>
     <nav>
       <ul>
-        <li><a href="#">Filtr</a></li>
-        <li><a href="#">Home</a></li>
-        <li><a href="#/posts">Posts</a></li>
+        <li><a href="#/posts/1">Filtr</a></li>
         <li><a href="#/new-submission">Submit</a></li>
-        <li><a href="/signin.html" id="sign-out">Sign Out</a></li>
+        <li><a href="/signin.html" id="sign-in">Sign in</a></li>
     </ul>
     </nav>
 
@@ -84,9 +82,11 @@
                     {{/each}}
                     {{#each onePost.images}}
                         <li><img src="{{url}}" style="width:200px;height:200px" class="voteable" alt="{{id}}"></li>
+                        <li>Vote count: {{votecount}}</li>
+                        <div class="vote"></div>
                     {{/each}}
                 </ul>
-                <button name="button" id="button">Click me</button>
+                <button type="button" id="button">Next</button>
             </div>
 
 
