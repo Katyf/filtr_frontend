@@ -5,10 +5,10 @@ var filtrApp = (function(){
 
   var init = function(){
     authToken = localStorage.getItem('authToken');
-    apiHost = 'https://filter-api.herokuapp.com/';
+    apiHost = 'https://filter-api.herokuapp.com';
     setupAjaxRequests();
-    $('.ui form').on('submit', submitLogin);
-    $('.ui form').on('submit', submitRegistration);
+    $('#signin-form').on('submit', submitLogin);
+    $('#signup-form').on('submit', submitRegistration);
     $('#sign-out').on('click', signOut);
   };
 
