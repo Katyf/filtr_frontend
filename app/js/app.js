@@ -92,7 +92,15 @@ var App = (function(app) {
       localStorage.setItem('id', newId);
       console.log(newId);
       showPost(newId);
-    })
+    });
+    $('#comment-form').hide();
+    $('#add-comment-btn').on('click', function(){
+      $('#comment-form').show();
+    });
+    $('.nested-comment-form').hide();
+    $('.add-nested-comment-btn').on('click', function(){
+      $('.nested-comment-form').toggle();
+    });
     $('#button').on('click', function(event){
       event.preventDefault();
       var newId = parseInt(localStorage.getItem('id')) + 1;

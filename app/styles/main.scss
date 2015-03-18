@@ -5,6 +5,24 @@ body {
 
 }
 
-ul.show-post {
+.show-post {
   list-style: none;
+  h1 {
+    text-align: center;
+  }
+  margin-top: 50px;
+  padding: 20px;
+  width: 100%;
+}
+
+div.post-img {
+    position: inline-block;
+    float: left;
+    margin-left: 50px;
+    min-width: 500px;
+  }
+
+div.comment-block {
+  min-width: 50%;
+
 }

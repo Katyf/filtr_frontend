@@ -84,26 +84,57 @@
         <script type="text/x-handlebars-template" id="showPostsTemplate">
 
         <div id="show-info">
-          <ul class='show-post' data-post-id="{{onePost.id}}">
-            <li>Post body: {{onePost.message}}</li>
+          <section class='show-post' data-post-id="{{onePost.id}}">
+            <h1>{{onePost.message}}</h1>
             {{#each onePost.images}}
-            <li><img src="{{url}}" style="width:200px;height:200px" class="voteable" alt="{{id}}"></li>
-            <li>Vote count: {{votecount}}</li>
-            <div class="vote"></div>
+                <div class="post-img"><img src="{{url}}" style="width:400px;height:400px" class="voteable" alt="{{id}}">
+                    <p>Vote count: {{votecount}}</p>
+                    <div class="vote">
+                    </div>
+                </div>
             {{/each}}
-            <form id="comment-form">
-                <label>Add a comment</label></br>
-                <textarea name="comment" id="comment-body"></textarea></br>
-                <label>username</label></br>
-                <input type="text" id="comment-user"></input></br>
-                <input type="submit" id="submit" value="Submit review" class="btn"/>
-              </form>
-            {{#each onePost.comments}}
-            <li><strong>{{user}}</strong></li>
-            <li>{{body}} </li>
+            <div class="comment-block">
+                <div class="ui button" id="add-comment-btn">Add a Comment</div>
+                    <form id="comment-form">
+                        <label>Add a comment</label></br>
+                        <textarea name="comment" id="comment-body"></textarea></br>
+                        <label>username</label></br>
+                        <input type="text" id="comment-user"></input></br>
+                        <input type="submit" id="submit" value="Submit Comment" class="btn"/>
+                    </form>
+                </div>
+                <h3 class="ui dividing header">Comments</h3>
+                {{#each onePost.comments}}
+                    <div class="ui comments">
+                        <div class="comment">
+                            <div class="content">
+                                <a class="author">{{user}}</a>
+                                <div class="metadata">
+                                    <span class="date"> at {{created_at}}</span>
+                                </div>
+                                <div class="text">
+                                    {{body}}
+                                </div>
+                                <div class="comment-block">
+                                    <div class="actions">
+                                        <a class="reply add-nested-comment-btn">Reply</a>
+                                        <form class="nested-comment-form">
+                                            <label>Add a comment</label></br>
+                                            <textarea name="comment" id="comment-body"></textarea></br>
+                                            <label>username</label></br>
+                                            <input type="text" id="comment-user"></input></br>
+                                            <input type="submit" id="submit" value="Submit Comment" class="btn"/>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+             </div>
             {{/each}}
-          </ul>
           <button id="button">Next</button>
+        </section>
         </div>
     </script>
     <!-- endbuild -->
