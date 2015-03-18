@@ -1,5 +1,4 @@
 'use strict';
-
 var trace = function(){
   for(var i = 0; i < arguments.length; i++){
     console.log(arguments[i]);
@@ -24,7 +23,7 @@ var App = (function(app) {
     Backbone.history.start();
   };
 
-  var home = function(){
+  home = function(){
     trace('hello from home');
     $('#container').empty();
     $.ajax({
@@ -105,7 +104,7 @@ var App = (function(app) {
 
   var showPost = function(postId){
     trace('hello word from showPosts');
-    $('#container').empty();
+    // $('#container').empty();
     var id = localStorage.getItem('id') || postId ;
     $.ajax({
       url: 'http://localhost:3000/posts/' + id,

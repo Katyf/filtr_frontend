@@ -91,7 +91,7 @@ S3App.sendUrlToDb = function(id, key){
     console.log("complete");
   });
 
-}
+};
 
 S3App.getSecondKey = function(id){
   $.ajax({
@@ -149,7 +149,7 @@ S3App.sendSecondUrlToDb = function(id, key){
     console.log("complete");
   });
 
-}
+};
 
 S3App.showThumbs = function (url) {
   $('div#img-preview-container').append('<img class="show-img" src="' + url + '" style="width:100px;height:100px"/>');
@@ -157,6 +157,7 @@ S3App.showThumbs = function (url) {
 
 
 $(document).ready(function() {
+  //S3App.getKsey();
 
   $('#img-upload-prompt').hide();
   $('#img-upload-prompt-2').hide();
