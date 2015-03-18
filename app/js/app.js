@@ -111,7 +111,11 @@ var App = (function(app) {
       url: 'http://localhost:3000/posts/' + id,
       type: 'GET'
     }).done(showPostSuccess)
-    .fail(failAjax);
+    .fail(function(){
+      $('#container').empty();
+      $('#container').append("Thanks for voting today, now <h2><a href='http://localhost:9000/#/'>GO HOME</a></h2>");
+      localStorage.setItem('id', 1);
+    });
   };
 
   var submitComment = function(event){
