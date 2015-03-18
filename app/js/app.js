@@ -29,12 +29,14 @@ var App = (function(app) {
     $.ajax({
       url: 'http://localhost:3000/posts/'
     }).done(function(response){
-      var allPostsLength = response.length
-      for (var i = 0; i < response.length; i++) {
-        var totalVote = response[i].images;
+      var createdAtReverse = response.reverse();
+      console.log(createdAtReverse);
+      for (var i = 0; i < createdAtReverse.length; i++) {
+        var reverseOrder = createdAtReverse[i]
       };
+
       var template = Handlebars.compile($('#homeTemplate').html());
-      $('#container').html(template({post: response}));
+      $('#container').html(template({post: createdAtReverse}));
     }).fail(failAjax);
   };
 
