@@ -30,6 +30,11 @@ var App = (function(app) {
     $.ajax({
       url: 'http://localhost:3000/posts/'
     }).done(function(response){
+      var allPostsLength = response.length
+      for (var i = 0; i < response.length; i++) {
+        var totalVote = response[i].images;
+        debugger;
+      };
       var template = Handlebars.compile($('#homeTemplate').html());
       $('#container').html(template({post: response}));
     }).fail(failAjax);
