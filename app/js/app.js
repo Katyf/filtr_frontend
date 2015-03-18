@@ -21,9 +21,10 @@ var App = (function(app) {
   app.initialize = function() {
     var router = new Router();
     Backbone.history.start();
+    $('#container').on('submit', 'form#comment-form', submitComment);
   };
 
-  home = function(){
+  var home = function(){
     trace('hello from home');
     $('#container').empty();
     $.ajax({
@@ -113,6 +114,25 @@ var App = (function(app) {
     .fail(failAjax);
   };
 
+  var submitComment = function(event){
+    console.log("this is the submit form");
+    var postId = $('.show-post').data("post-id");
+    event.preventDefault();
+    $.ajax({
+      url: 'http://localhost:3000/posts/' + postId + '/comments',
+      type: 'POST',
+      data: {comment: {
+        user: $('input#comment-user').val(),
+        body: $('textarea#comment-body').val()
+      }},
+    }).done(function(data){
+      console.log(data);
+      showPost();
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+    console.log(jqXHR, textStatus, errorThrown);
+    });
+  };
+
   var Router = Backbone.Router.extend({
     routes: {
       '': 'home', // http://localhost:9000/
@@ -128,7 +148,9 @@ var App = (function(app) {
   return app;
 })(App || {});
 
-$(document).ready(App.initialize);
+$(document).ready(function(){
+  App.initialize();
+});
 
 
 

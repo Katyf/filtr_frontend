@@ -5,7 +5,7 @@ var filtrApp = (function(){
 
   var init = function(){
     authToken = localStorage.getItem('authToken');
-    apiHost = 'https://filter-api.herokuapp.com';
+    apiHost = 'http://localhost:3000';
     setupAjaxRequests();
     $('#signin-form').on('submit', submitLogin);
     $('#signup-form').on('submit', submitRegistration);
