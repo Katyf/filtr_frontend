@@ -5,17 +5,17 @@ var trace = function(){
   }
 };
 
-// $(document).ajaxStart(function(e){
-//   trace(e, 'starting an ajax request');
-//   $('section#ajax-preloader').fadeIn();
-//   $('section#container').fadeOut();
-// });
+$(document).ajaxStart(function(e){
+  trace(e, 'starting an ajax request');
+  $('section#ajax-preloader').fadeIn();
+  $('section#container').fadeOut();
+});
 
-// $(document).ajaxComplete(function(event, xhr, settings) {
-//   /* executes whenever an AJAX request completes */
-//   $('section#ajax-preloader').fadeOut();
-//   $('section#container').fadeIn();
-// });
+$(document).ajaxComplete(function(event, xhr, settings) {
+  /* executes whenever an AJAX request completes */
+  $('section#ajax-preloader').fadeOut();
+  $('section#container').fadeIn();
+});
 
 var App = (function(app) {
   app.initialize = function() {
@@ -28,9 +28,10 @@ var App = (function(app) {
     trace('hello from home');
     $('#container').empty();
     $.ajax({
-      url: 'http://localhost:3000/posts/'
+      url: 'https://filter-api.herokuapp.com/posts'
     }).done(function(response){
       var createdAtReverse = response.reverse();
+      debugger;
       console.log(createdAtReverse);
       for (var i = 0; i < createdAtReverse.length; i++) {
         var reverseOrder = createdAtReverse[i]
@@ -56,7 +57,7 @@ var App = (function(app) {
     $(".vote").append(voteCount.votecount);
     $.ajax({
       // /posts/:post_id/images/:id/upvote(.:format
-      url: 'http://localhost:3000/posts/' + postId + '/images/' + $img.alt + '/upvote',
+      url: 'https://filter-api.herokuapp.com/posts/' + postId + '/images/' + $img.alt + '/upvote',
         type: 'PATCH',
       data: {
         vote: {count : voteLength }
@@ -75,7 +76,7 @@ var App = (function(app) {
 
     $.ajax({
       // POST /posts/:post_id/images/:id/vote(.:format
-      url: 'http://localhost:3000/posts/' + postId + '/images/' + imgId,
+      url: 'https://filter-api.herokuapp.com/posts/' + postId + '/images/' + imgId,
       type: 'GET'
     }).done(function(data){
       checkVote($img, data, postId);
@@ -108,12 +109,13 @@ var App = (function(app) {
     // $('#container').empty();
     var id = localStorage.getItem('id') || postId ;
     $.ajax({
-      url: 'http://localhost:3000/posts/' + id,
+      url: 'https://filter-api.herokuapp.com/posts/' + id,
       type: 'GET'
     }).done(showPostSuccess)
     .fail(function(){
       $('#container').empty();
       $('#container').append("Thanks for voting today, now <h2><a href='http://localhost:9000/#/'>GO HOME</a></h2>");
+      //change to github pages when uploaded
       localStorage.setItem('id', 1);
     });
   };
@@ -123,7 +125,7 @@ var App = (function(app) {
     var postId = $('.show-post').data("post-id");
     event.preventDefault();
     $.ajax({
-      url: 'http://localhost:3000/posts/' + postId + '/comments',
+      url: 'https://filter-api.herokuapp.com/posts/' + postId + '/comments',
       type: 'POST',
       data: {comment: {
         user: $('input#comment-user').val(),

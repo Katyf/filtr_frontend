@@ -5,6 +5,7 @@ $(document).ready(function() {
 
   $('.example').on('click', function(){
    window.location.href='http:localhost:9000/';
+   //change to github pages once uploaded
   });
 
   $('.item').on('click', function(){

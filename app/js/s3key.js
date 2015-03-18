@@ -7,7 +7,7 @@ S3App.submitPost = function() {
   event.preventDefault();
   //debugger;
   $.ajax({
-    url: 'http://localhost:3000/posts',
+    url: 'https://filter-api.herokuapp.com/posts',
     type: 'POST',
     data: { post: { message: $('#post-msg').val() }},
   })
@@ -29,7 +29,7 @@ S3App.submitPost = function() {
 
 S3App.getMessage = function(postId){
   $.ajax({
-    url: 'http://localhost:3000/posts/' + postId,
+    url: 'https://filter-api.herokuapp.com/posts/' + postId,
     type: 'GET',
   })
   .done(function(data) {
@@ -46,7 +46,7 @@ S3App.renderMessage = function(msg) {
 
 S3App.getKey = function(id){
   $.ajax({
-    url: 'http://localhost:3000/amazon/sign_key',
+    url: 'https://filter-api.herokuapp.com/amazon/sign_key',
     type: 'GET',
     dataType: 'JSON',
   })
@@ -72,7 +72,7 @@ S3App.sendUrlToDb = function(id, key){
   // var postId = parseInt(event.target.id.replace(/\D/g, ''));
   //debugger;
   $.ajax({
-    url: 'http://localhost:3000/posts/' + id + '/images' ,
+    url: 'https://filter-api.herokuapp.com/posts/' + id + '/images' ,
     type: 'POST',
     data: { image: { url: 'https://s3.amazonaws.com/filtrapp/' + key }},
   })
@@ -95,7 +95,7 @@ S3App.sendUrlToDb = function(id, key){
 
 S3App.getSecondKey = function(id){
   $.ajax({
-    url: 'http://localhost:3000/amazon/sign_key',
+    url: 'https://filter-api.herokuapp.com/amazon/sign_key',
     type: 'GET',
     dataType: 'JSON',
   })
@@ -123,7 +123,7 @@ S3App.getSecondKey = function(id){
 
 S3App.sendSecondUrlToDb = function(id, key){
   $.ajax({
-    url: 'http://localhost:3000/posts/' + id + '/images' ,
+    url: 'https://filter-api.herokuapp.com/posts/' + id + '/images' ,
     type: 'POST',
     data: { image: { url: 'https://s3.amazonaws.com/filtrapp/' + key }},
   })
@@ -171,6 +171,7 @@ $(document).ready(function() {
 
   $('#done').on('click', function() {
     window.location.href = 'http://localhost:9000/'
+    // add to github pages when hosted
   });
 
 });
