@@ -48,7 +48,6 @@ var App = (function(app) {
     // $img.closest('div').append(voteLength);
     $(".vote").empty();
     $(".vote").append(voteCount.votecount);
-    debugger;
     $.ajax({
       // /posts/:post_id/images/:id/upvote(.:format
       url: 'http://localhost:3000/posts/' + postId + '/images/' + $img.alt + '/upvote',
@@ -73,7 +72,6 @@ var App = (function(app) {
       url: 'http://localhost:3000/posts/' + postId + '/images/' + imgId,
       type: 'GET'
     }).done(function(data){
-      debugger;
       checkVote($img, data, postId);
     }).fail(failAjax);
   };
@@ -83,6 +81,12 @@ var App = (function(app) {
     var template = Handlebars.compile($('#showPostsTemplate').html());
     $('#container').html(template({onePost: response}));
     $('body').on('click', 'img.voteable', {postId: response.id}, vote);
+    $('img.voteable').on('click',function(event){
+      var newId = parseInt(localStorage.getItem('id')) + 1;
+      localStorage.setItem('id', newId);
+      console.log(newId);
+      showPost(newId);
+    })
     $('#button').on('click', function(event){
       event.preventDefault();
       var newId = parseInt(localStorage.getItem('id')) + 1;
