@@ -23,7 +23,7 @@ var App = (function(app) {
     Backbone.history.start();
   };
 
-  var home = function(){
+  home = function(){
     trace('hello from home');
     $('#container').empty();
     $.ajax({
@@ -32,7 +32,6 @@ var App = (function(app) {
       var allPostsLength = response.length
       for (var i = 0; i < response.length; i++) {
         var totalVote = response[i].images;
-        debugger;
       };
       var template = Handlebars.compile($('#homeTemplate').html());
       $('#container').html(template({post: response}));
@@ -103,7 +102,7 @@ var App = (function(app) {
 
   var showPost = function(postId){
     trace('hello word from showPosts');
-    $('#container').empty();
+    // $('#container').empty();
     var id = localStorage.getItem('id') || postId ;
     $.ajax({
       url: 'http://localhost:3000/posts/' + id,

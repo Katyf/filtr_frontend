@@ -3,55 +3,47 @@
 
 var filtrComment = (function(){
   var apiHost;
-
+// https://filter-api.herokuapp.com
   var init = function(){
-    apiHost = 'https://filter-api.herokuapp.com';
+    apiHost = 'http://localhost:3000';
     $('#container').on('submit', 'form#comment-form', submitComment);
   };
 
-  var indexComments = function(comment){
+  var getComments = function(){
     $.ajax({
       url: apiHost + '/posts/' + post.id + '/comments',
       type: 'GET'
     }).done(function(data){
-      data.forEach(renderComment, comment);
-      $('form#comment-form').hide();
-      $('#toggle-review-button').on('click', function(){
-      var id = parseInt(this.id.replace(/\D/g,''));
-      $(this).hide();
-      $('form#comment-form' + id).show();
-      });
+      console.log(data);
+      indexComments(data);
     }).fail(function(jqXHR, textStatus, errorThrown){
       console.log(jqXHR, textStatus, errorThrown);
     });
   };
 
-  var renderComment = function(){
-
+  var indexComments = function(data){
+    var template = Handlebars.compile($('#homeTemplate').html());
+      $('#container').html(template({post: data}));
   };
   var submitComment = function(event){
-    event.preventDefault();
     debugger;
-    var id = parseInt(event.target.id.replace(/\D/g,''));
-    var $body = $('form#comment-form' + id + '#comment-body');
-    var $user = $('form#comment-form' + id + '#comment-user');
+    console.log("this is the submit form");
+    var postId = $('.comment-form').data("post-id");
+    event.preventDefault();
+    // var id = parseInt(event.target.id.replace(/\D/g,''));
+    // var $body = $('form#comment-form-' + id + '#comment-body');
+    // var $user = $('form#comment-form-' + id + '#comment-user');
     $.ajax({
       //POST /posts/:post_id/comments comments#create
-      url: apiHost + '/posts/' + id + '/comments',
+      url: apiHost + '/posts/' + postId + '/comments',
       type: 'POST',
       data: {comment: {
-        body: $body.val(),
-        user:$user.val()
+        body: $('input#comment-user').val(),
+        user: $('textarea#comment-body').val()
       }},
     }).done(function(data){
       console.log(data);
-      $('#toggle-review-button').show();
-      var template = Handlebars.compile($('#homeTemplate').html());
-      $('' + id).append(template(data));
-      //Clear the values
-      $body.val('');
-      $author.val('');
-      $('form#comment-form' + id).hide();
+
     }).fail(function(jqXHR, textStatus, errorThrown) {
     console.log(jqXHR, textStatus, errorThrown);
     });
