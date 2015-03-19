@@ -21,9 +21,8 @@
     <![endif]-->
     <h1>filtr</h1>
     <nav class="ui menu">
-        <a class="item" href="#/posts/1">Filtr</a>
-        <a class="item" href="">Most Popular</a>
-        <a class="item" href="" id="sign-in">Vote</a>
+        <a class="item" href="/#">Filtr</a>
+        <a class="item" href="#/posts/1" id="">Vote</a>
         <a class="item" href="http://localhost:9000/upload.html" id="sign-in">Upload</a>
         <div class="right menu">
             <a class="item" href="/signin-up.html">Log In</a>
@@ -36,7 +35,7 @@
 
 
 
-    <section id="container"></section>
+    <section id="container" class=""></section>
     <section id="ajax-preloader">
       <div class="animation"></div>
     </section>
@@ -64,49 +63,66 @@
     <script src="js/sign_up.js" type="text/javascript"></script>
 
         <script type="text/x-handlebars-template" id="homeTemplate">
+        <h1 id="all">Showing: all posts</h1>
         {{#each post}}
-            <div id="post-info">
-                <ul>
-                    <li>Post body: {{message}}</li>
-                    {{#each comments}}
-                    <li> id: {{this.id}}</li>
-                    <li>Comment body: {{body}} </li>
-                    {{/each}}
-                    {{#each images}}
-                        <li><img src="{{url}}" style="width:200px;height:200px"></li>
-                    {{/each}}
-                </ul>
-            </div>
+            <section class="ui centered grid">
 
+                    <h2>{{message}}</h2>
+                    <div class="two column centered row">
+                    {{#each images}}
+                        <div class="index-images column"><img src="{{url}}" style="width:250px;height:250px"></div>
+                    {{/each}}
+                    </div>
+                    <div class="ui grid">
+                    <div class="main-comments two column row">
+                    <div class="column">
+                    <h4 class="ui dividing header toggle-coms">Comments</h4>
+                    {{#each comments}}
+                    <div class="ui comments">
+                        <div class="comment" data-comment-id="{{comment.id}}">
+                        <a class="avatar">
+                            <img src="../images/avatar.png">
+                        </a>
+                            <div class="content">
+                                <a class="author">{{user}}</a>
+                                <div class="metadata">
+                                    <span class="date"> at {{created_at}}</span>
+                                </div>
+                                <div class="text">
+                                    {{body}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+             </div>
+            {{/each}}
+            </div>
+            </div>
+            </section>
         {{/each}}
     </script>
 
         <script type="text/x-handlebars-template" id="showPostsTemplate">
 
-        <div id="show-info">
+
           <section class='show-post' data-post-id="{{onePost.id}}">
             <h1>{{onePost.message}}</h1>
+            <div class="images-div">
             {{#each onePost.images}}
-                <div class="post-img"><img src="{{url}}" style="width:400px;height:400px" class="voteable" alt="{{id}}">
+                <div class="post-img"><img src="{{url}}" style="width:430px;height:430px" class="voteable" alt="{{id}}">
                     <p>Vote count: {{votecount}}</p>
-                    <div class="vote">
-                    </div>
+
                 </div>
             {{/each}}
+            </div>
             <div class="comment-block">
-                <div class="ui button" id="add-comment-btn">Add a Comment</div>
-                    <form id="comment-form">
-                        <label>Add a comment</label></br>
-                        <textarea name="comment" id="comment-body"></textarea></br>
-                        <label>username</label></br>
-                        <input type="text" id="comment-user"></input></br>
-                        <input type="submit" id="submit" value="Submit Comment" class="btn"/>
-                    </form>
-                </div>
                 <h3 class="ui dividing header">Comments</h3>
                 {{#each onePost.comments}}
                     <div class="ui comments">
-                        <div class="comment">
+                        <div class="comment" data-comment-id="{{comment.id}}">
+                        <a class="avatar">
+                            <img src="../images/avatar.png">
+                        </a>
                             <div class="content">
                                 <a class="author">{{user}}</a>
                                 <div class="metadata">
@@ -130,12 +146,21 @@
                             </div>
                         </div>
                     </div>
-                 </div>
              </div>
             {{/each}}
-          <button id="button">Next</button>
+            </div>
+            <div class="ui button" id="new-comment-btn">Add a Comment</div>
+                    <form id="comment-form">
+                        <label>Add a comment</label></br>
+                        <textarea name="comment" id="comment-body"></textarea></br>
+                        <label>Username</label></br>
+                        <input type="text" id="comment-user"></input></br>
+                        <input type="submit" id="submit" value="Submit Comment" class="btn"/>
+                    </form>
+                </div>
+          <button class="ui button" id="button">Next</button>
         </section>
-        </div>
+
     </script>
     <!-- endbuild -->
   </body>

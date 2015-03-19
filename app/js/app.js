@@ -22,6 +22,7 @@ var App = (function(app) {
     var router = new Router();
     Backbone.history.start();
     $('#container').on('submit', 'form#comment-form', submitComment);
+    $('#container').on('submit', 'form#nested-comment-form', submitNestedComment);
   };
 
   var home = function(){
@@ -94,7 +95,7 @@ var App = (function(app) {
       showPost(newId);
     });
     $('#comment-form').hide();
-    $('#add-comment-btn').on('click', function(){
+    $('#new-comment-btn').on('click', function(){
       $('#comment-form').show();
     });
     $('.nested-comment-form').hide();
@@ -132,6 +133,26 @@ var App = (function(app) {
     event.preventDefault();
     $.ajax({
       url: 'http://localhost:3000/posts/' + postId + '/comments',
+      type: 'POST',
+      data: {comment: {
+        user: $('input#comment-user').val(),
+        body: $('textarea#comment-body').val()
+      }},
+    }).done(function(data){
+      console.log(data);
+      showPost();
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+    console.log(jqXHR, textStatus, errorThrown);
+    });
+  };
+
+   var submitNestedComment = function(event){
+    console.log("this is a nested comment");
+    var postId = $('.show-post').data("post-id");
+    var parentId = $('.comment').data("comment-id");
+    event.preventDefault();
+    $.ajax({
+      url: 'http://localhost:3000/posts/' + postId + '/comments' + parentId,
       type: 'POST',
       data: {comment: {
         user: $('input#comment-user').val(),

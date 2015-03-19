@@ -1,28 +1,93 @@
 body {
   padding: 50px;
   margin: 50px;
-  left: 100px;
+  //left: 100px;
 
+}
+
+body#upload {
+  background-image: url(trianglify.svg);
+  background-size: cover;
+  div#upload-p {
+    margin: 0 auto;
+    width: 60%;
+    padding: 15px;
+    p {
+      font-size: 18px;
+    }
+  }
+  #clickme {
+    margin-top: 20px;
+  }
+  div.modal {
+    top: 300px;
+    margin-top: 20px;
+  }
 }
 
 .show-post {
   list-style: none;
   h1 {
     text-align: center;
+    margin-bottom: 50px;
   }
-  margin-top: 50px;
-  padding: 20px;
+  margin-top: 0px;
+  padding: 40px;
   width: 100%;
 }
 
 div.post-img {
     position: inline-block;
     float: left;
-    margin-left: 50px;
-    min-width: 500px;
+    margin-left: 40px;
+    margin-bottom: 50px;
   }
 
 div.comment-block {
   min-width: 50%;
-
+  margin-top: 20px;
 }
+
+
+form#comment-form {
+  padding: 10px;
+  input {
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+}
+
+div#new-post-page {
+  text-align: center;
+  background-color: white;
+  width: 80%;
+  height: 500px;
+  margin-left: 10%;
+  padding: 50px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(148,146,148,0.65);
+  -moz-box-shadow: 0px 0px 5px 2px rgba(148,146,148,0.65);
+  box-shadow: 0px 0px 5px 2px rgba(148,146,148,0.65);
+}
+
+
+.index-images {
+  text-align: center;
+  img {
+    margin-left: 20%;
+  }
+}
+
+section.centered.grid {
+  margin: 0 auto;
+  padding: 50px;
+  h2 {
+    margin: 50px;
+  }
+}
+
+div#new-comment-btn {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
