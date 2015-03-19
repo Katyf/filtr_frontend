@@ -3,11 +3,20 @@
 <head>
   <title>test modal</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.css">
-    <link rel="stylesheet" href="styles/main.css">
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
 </head>
 <body id="upload">
-
+<!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
 <div id="new-post-page">
 <h1>Create a post!</h1>
 <div id="upload-p">
@@ -89,12 +98,26 @@
       </div>
     </div>
   </div>
+  <!-- build:js(.) scripts/oldieshim.js -->
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <![endif]-->
+    <!-- endbuild -->
 
-<script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="/js/new_post_modal.js" type="text/javascript" charset="utf-8" async defer></script>
-    <script src="/js/s3key.js" type="text/javascript" charset="utf-8" async defer></script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/handlebars/handlebars.js"></script>
     <script src="bower_components/semantic-ui/dist/semantic.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="/js/new_post_modal.js" type="text/javascript" charset="utf-8" async defer></script>
+    <script src="/js/s3key.js" type="text/javascript" charset="utf-8" async defer></script>
 
     <script type="text/x-handlebars-template" id="imageFormTemplate">
     <div class="imageForm">
@@ -128,5 +151,6 @@
         <input type="submit" value="Upload File to S3">
       </form>
 </script>
+ <!-- endbuild -->
 </body>
 </html>
