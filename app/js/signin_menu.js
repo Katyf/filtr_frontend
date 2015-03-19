@@ -4,7 +4,7 @@ $(document).ready(function() {
   $('#signup-form-div').hide();
 
   $('.example').on('click', function(){
-   window.location.href='http:localhost:9000/';
+   window.location.href='http://teamjkg.github.io/filtr_frontend/';
    //change to github pages once uploaded
   });
 
