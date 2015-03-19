@@ -404,7 +404,6 @@ module.exports = function (grunt) {
     'concurrent:dist',
     'autoprefixer',
     'concat',
-    'ngAnnotate',
     'copy:dist',
     'cdnify',
     'cssmin',
