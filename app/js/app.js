@@ -32,7 +32,6 @@ var App = (function(app) {
       url: 'https://filter-api.herokuapp.com/posts'
     }).done(function(response){
       var createdAtReverse = response.reverse();
-      debugger;
       console.log(createdAtReverse);
       for (var i = 0; i < createdAtReverse.length; i++) {
         var reverseOrder = createdAtReverse[i]
@@ -123,7 +122,7 @@ var App = (function(app) {
     }).done(showPostSuccess)
     .fail(function(){
       $('#container').empty();
-      $('#container').append("Thanks for voting today, now <h2><a href='http://localhost:9000/#/'>GO HOME</a></h2>");
+      $('#container').append("Thanks for voting today, now <h2><a href='http://teamjkg.github.io/filtrapp/'>GO HOME</a></h2>");
       //change to github pages when uploaded
       localStorage.setItem('id', 1);
     });
@@ -154,7 +153,7 @@ var App = (function(app) {
     var parentId = $('.comment').data("comment-id");
     event.preventDefault();
     $.ajax({
-      url: 'http://localhost:3000/posts/' + postId + '/comments' + parentId,
+      url: 'http://filter-api.herokuapp.com/posts/' + postId + '/comments' + parentId,
       type: 'POST',
       data: {comment: {
         user: $('input#comment-user').val(),
