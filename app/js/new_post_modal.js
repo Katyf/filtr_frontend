@@ -3,6 +3,10 @@
 
   $(document).ready(function() {
 
+    $('#back').on('click', function(){
+      window.location.href="http://localhost:9000/#/posts/1"
+    });
+
     $('#clickme').on('click', function(){
       $('.coupled.modal')
       .modal({
