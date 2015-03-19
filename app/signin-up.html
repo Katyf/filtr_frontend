@@ -5,17 +5,12 @@
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-  <!-- build:css(.) styles/vendor.css -->
-  <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.css">
-  <!-- endbower -->
-  <!-- endbuild -->
-  <!-- build:css(.tmp) styles/main.css -->
-  <link rel="stylesheet" href="styles/test.css">
-  <!-- endbuild -->
+  <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.css" />
+  <link rel="stylesheet" href="styles/vendor.css">
+  <link rel="stylesheet" href="styles/main.css">
+
 </head>
-<body>
+<body id="signin-page">
   <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -94,28 +89,23 @@
 
   <section id="container"></section>
 
-  <!-- build:js(.) scripts/oldieshim.js -->
-  <!--[if lt IE 9]>
-  <script src="bower_components/es5-shim/es5-shim.js"></script>
-  <script src="bower_components/json3/lib/json3.js"></script>
-  <![endif]-->
-  <!-- endbuild -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/backbone/backbone.js"></script>
+    <script src="bower_components/handlebars/handlebars.js"></script>
+    <script src="bower_components/semantic-ui/dist/semantic.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
 
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="js/app.js"  type="text/javascript"></script>
+    <script src="js/sign_up.js" type="text/javascript"></script>
+    <script src="js/signin_menu.js" type="text/javascript"></script>
+    <script src="js/s3key.js" type="text/javascript"></script>
+    <script src="js/new_post_modal.js" type="text/javascript"></script>
+  <!-- <script src="/scripts/vendor.js" type="text/javascript"></script>
+  <script src="/scripts/scripts.js" type="text/javascript"></script> -->
 
-  <!-- build:js(.) scripts/vendor.js -->
-  <!-- bower:js -->
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/semantic-ui/dist/semantic.js"></script>
-  <script src="bower_components/modernizr/modernizr.js"></script>
-  <script src="bower_components/underscore/underscore.js"></script>
-  <script src="bower_components/backbone/backbone.js"></script>
-  <script src="bower_components/handlebars/handlebars.js"></script>
-  <!-- endbower -->
-  <!-- endbuild -->
-
-  <!-- build:js({.tmp,app}) scripts/scripts.js -->
-  <script src="js/signin_menu.js" type="text/javascript"></script>
-  <script src="js/sign_up.js" type="text/javascript"></script>
-  <!-- endbuild -->
 </body>
 </html>

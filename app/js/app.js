@@ -122,7 +122,7 @@ var App = (function(app) {
     }).done(showPostSuccess)
     .fail(function(){
       $('#container').empty();
-      $('#container').append("Thanks for voting today, now <h2><a href='http://teamjkg.github.io/filtr_frontend/'>GO HOME</a></h2>");
+      $('#container').append("Thanks for voting today, now <h2><a href='http://localhost:9000/#'>GO HOME</a></h2>");
       //change to github pages when uploaded
       localStorage.setItem('id', 1);
     });

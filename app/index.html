@@ -15,18 +15,18 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body>
+  <body id="main">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <h1>filtr</h1>
     <nav class="ui menu">
-        <a class="item" href="http://teamjkg.github.io/filtr_frontend/#">Filtr</a>
-        <a class="item" href="http://teamjkg.github.io/filtr_frontend/#/posts/1" id="">Vote</a>
-        <a class="item" href="http://teamjkg.github.io/filtr_frontend/upload.html" id="sign-in">Upload</a>
+        <a class="item" href="http://localhost:9000/#">Filtr</a>
+        <a class="item" href="http://localhost:9000/#/posts/1" id="">Vote</a>
+        <a class="item" href="http://localhost:9000/upload.html" id="sign-in">Upload</a>
         <div class="right menu">
-            <a class="item" href="http://teamjkg.github.io/filtr_frontend/signin-up.html">Log In</a>
-            <a class="item" href="http://teamjkg.github.io/filtr_frontend/signin-up.html">Sign Up</a>
+            <a class="item" href="http://localhost:9000/signin-up.html">Log In</a>
+            <a class="item" href="http://localhost:9000/signin-up.html">Sign Up</a>
             <a class="item" href="" id="sign-out">Log Out</a>
         </div>
     </nav>
@@ -61,6 +61,9 @@
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="js/app.js"  type="text/javascript"></script>
     <script src="js/sign_up.js" type="text/javascript"></script>
+    <script src="js/signin_menu.js" type="text/javascript"></script>
+    <script src="js/s3key.js" type="text/javascript"></script>
+    <script src="js/new_post_modal.js" type="text/javascript"></script>
 
         <script type="text/x-handlebars-template" id="homeTemplate">
         <h1 id="all">Showing: all posts</h1>

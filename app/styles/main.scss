@@ -1,4 +1,4 @@
-body {
+body#main {
   padding: 50px;
   margin: 50px;
   //left: 100px;
@@ -6,7 +6,7 @@ body {
 }
 
 body#upload {
-  background-image: url(trianglify.svg);
+  background-image: url(../images/trianglify.svg);
   background-size: cover;
   div#upload-p {
     margin: 0 auto;
@@ -91,3 +91,36 @@ div#new-comment-btn {
   margin-bottom: 10px;
 }
 
+body#signin-page {
+  background-image: url(../images/trianglify.svg);
+  background-size: cover;
+}
+
+div.logo {
+  text-align: center;
+  color: white;
+  font-size: 100px;
+  margin-top: 50px;
+}
+
+div#signin-box {
+  size: 80%;
+  top: 40px;
+  position: relative;
+  form {
+    padding: 10px;
+    input {
+      padding: 10px;
+      margin: 10px;
+    }
+    button {
+      margin: 0 auto;
+      margin-left: 40%;
+    }
+    p {
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+
+ }

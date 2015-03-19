@@ -170,7 +170,7 @@ $(document).ready(function() {
   });
 
   $('#done').on('click', function() {
-    window.location.href = 'http://teamjkg.github.io/filtr_frontend/';
+    window.location.href = 'http://localhost:9000/#';
     // add to github pages when hosted
   });
 
