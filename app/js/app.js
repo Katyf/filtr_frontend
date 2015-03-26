@@ -37,8 +37,8 @@ var App = (function(app) {
         var reverseOrder = createdAtReverse[i]
       };
 
-      var template = Handlebars.compile($('#homeTemplate').html());
-      $('#container').html(template({post: createdAtReverse}));
+      // var template = Handlebars.compile($('#homeTemplate').html());
+      // $('#container').html(template({post: createdAtReverse}));
     }).fail(failAjax);
   };
 

@@ -1,11 +1,8 @@
 'use strict';
-
-var S3App = S3App || {
-};
+var S3App = S3App || {};
 
 S3App.submitPost = function() {
   event.preventDefault();
-  //debugger;
   $.ajax({
     url: 'https://filter-api.herokuapp.com/posts',
     type: 'POST',
@@ -53,9 +50,10 @@ S3App.getKey = function(id){
   .done(function(data) {
     $('#s3-container').fadeIn();
     $('#img-upload-prompt').fadeIn();
+    console.log('on s3 done callback: data is: ',data);
     var template = Handlebars.compile($('#imageFormTemplate').html());
-      $('#s3-container').html(template({ imageForm: data }));
-    console.log(data);
+    $('#s3-container').html(template({ imageForm: data }));
+
     //debugger;
     $('.imageForm').on('submit', function(){
       S3App.sendUrlToDb(id, data.key);

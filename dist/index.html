@@ -2,4 +2,79 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]--> <h1>filtr</h1> <nav class="ui menu"> <a class="item" href="http://teamjkg.github.io/filtr_frontend/#">Filtr</a> <a class="item" href="http://teamjkg.github.io/filtr_frontend/#/posts/1" id="">Vote</a> <a class="item" href="http://teamjkg.github.io/filtr_frontend/upload.html" id="sign-in">Upload</a> <div class="right menu"> <a class="item" href="http://teamjkg.github.io/filtr_frontend/signin-up.html">Log In</a> <a class="item" href="http://teamjkg.github.io/filtr_frontend/signin-up.html">Sign Up</a> <a class="item" href="" id="sign-out">Log Out</a> </div> </nav> <section id="container" class=""></section> <section id="ajax-preloader"> <div class="animation"></div> </section> <!--[if lt IE 9]>
     <script src="scripts/oldieshim.d41d8cd9.js"></script>
-    <![endif]--> <script src="scripts/vendor.3722e26b.js"></script> <script src="scripts/scripts.87764d26.js"></script>  
+    <![endif]--> <script src="scripts/vendor.3722e26b.js"></script> <script src="scripts/scripts.8da5ef36.js"></script> <script type="text/x-handlebars-template" id="homeTemplate"><h1 id="all">Showing: all posts</h1>
+      {{#each post}}
+        <section class="ui centered grid">
+          <h2>{{message}}</h2>
+          <div class="two column centered row">
+            {{#each images}}
+              <div class="index-images column"><img src="{{url}}" style="width:250px;height:250px"></div>
+            {{/each}}
+          </div>
+          <div class="ui grid">
+            <div class="main-comments two column row">
+              <div class="column">
+              <h4 class="ui dividing header toggle-coms">Comments</h4>
+              {{#each comments}}
+                <div class="ui comments">
+                  <div class="comment" data-comment-id="{{comment.id}}">
+                    <a class="avatar"><img src="../images/avatar.70c75112.png"></a>
+                    <div class="content">
+                      <a class="author">{{user}}</a>
+                      <div class="metadata"><span class="date"> at {{created_at}}</span></div>
+                      <div class="text">{{body}}</div></div>
+                    </div>
+                  </div>
+                </div>
+              {{/each}}
+            </div>
+          </div>
+        </section>
+      {{/each}}</script> <script type="text/x-handlebars-template" id="showPostsTemplate"><section class='show-post' data-post-id="{{onePost.id}}">
+        <h1>{{onePost.message}}</h1>
+        <div class="images-div">
+          {{#each onePost.images}}
+            <div class="post-img"><img src="{{url}}" style="width:430px;height:430px" class="voteable" alt="{{id}}">
+              <p>Vote count: {{votecount}}</p>
+            </div>
+          {{/each}}
+        </div>
+        <div class="comment-block">
+          <h3 class="ui dividing header">Comments</h3>
+          {{#each onePost.comments}}
+            <div class="ui comments">
+              <div class="comment" data-comment-id="{{comment.id}}">
+                <a class="avatar"><img src="../images/avatar.70c75112.png"></a>
+                <div class="content">
+                  <a class="author">{{user}}</a>
+                  <div class="metadata"><span class="date"> at {{created_at}}</span></div>
+                  <div class="text">{{body}}</div>
+                  <div class="comment-block">
+                    <div class="actions">
+                      <a class="reply add-nested-comment-btn">Reply</a>
+                      <form class="nested-comment-form">
+                        <label>Add a comment</label></br>
+                        <textarea name="comment" id="comment-body"></textarea></br>
+                        <label>username</label></br>
+                        <input type="text" id="comment-user"></input></br>
+                        <input type="submit" id="submit" value="Submit Comment" class="btn"/>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          {{/each}}
+        </div>
+        <div class="ui button" id="new-comment-btn">Add a Comment</div>
+          <form id="comment-form">
+            <label>Add a comment</label></br>
+            <textarea name="comment" id="comment-body"></textarea></br>
+            <label>Username</label></br>
+            <input type="text" id="comment-user"></input></br>
+            <input type="submit" id="submit" value="Submit Comment" class="btn"/>
+          </form>
+        </div>
+        <button class="ui button" id="button">Next</button>
+      </section></script>  
